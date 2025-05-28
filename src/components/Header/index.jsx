@@ -1,10 +1,10 @@
 import React from "react";
-import './style.css'; 
+import { HeaderWrapper, TextWrapper } from "./style";
 
 export default function Header() {
   return (
-    <header className="header">
-      <div className="text-wrapper">InscriON</div>
-    </header>
+    <HeaderWrapper>
+      <TextWrapper>InscriON</TextWrapper>
+    </HeaderWrapper>
   );
 }
