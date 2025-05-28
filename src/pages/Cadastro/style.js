@@ -24,7 +24,7 @@ export const ContainerConteudo = styled.div`
 export const LeftSide = styled.div`
   width: 60%;
   min-width: 400px;
-  background-color: #2a83d9;
+  background-color: #40a7e3;
   background-image: url(${bgCadastro});
   background-size: cover;
   background-position: center;
@@ -68,7 +68,7 @@ export const Subtitle = styled.p`
   color: #333;
   text-align: center;
   a {
-    color: #2a83d9;
+    color: #40a7e3;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
@@ -101,9 +101,9 @@ export const Input = styled.input`
   outline-offset: 2px;
 
   &:focus {
-    border-color: #2a83d9;
+    border-color: #40a7e3;
     outline: none;
-    box-shadow: 0 0 3px #2a83d9;
+    box-shadow: 0 0 3px #40a7e3;
   }
 `;
 
@@ -119,7 +119,7 @@ export const CheckboxWrapper = styled.div`
   }
 
   a {
-    color: #2a83d9;
+    color: #40a7e3;
     text-decoration: none;
     margin: 0 0.25rem;
     &:hover {
@@ -129,7 +129,7 @@ export const CheckboxWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: #2a83d9;
+  background-color: #40a7e3;
   color: white;
   width: 100%;
   height: auto;
