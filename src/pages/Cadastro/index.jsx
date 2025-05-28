@@ -85,7 +85,7 @@ export default function Cadastro() {
             <p id="erro-nome" style={erroStyle}>
               {
                 errors.nome ||
-                "\u00A0" /* espaço não quebrável para ocupar o lugar */
+                  "\u00A0" /* espaço não quebrável para ocupar o lugar */
               }
             </p>
 
