@@ -2,13 +2,12 @@
 import React from "react";
 import { Input } from "antd";
 import {
-  HeaderWrapper,
-  TextWrapper,
   SearchWrapper,
   Nav,
   NavItem,
 } from "./style";
 
+import { HeaderWrapper, TextWrapper } from "../Header/style";
 const { Search } = Input;
 
 export default function HeaderPage() {

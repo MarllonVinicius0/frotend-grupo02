@@ -65,7 +65,7 @@ export default function Cadastro() {
           <Title>Cadastre-se</Title>
           <Subtitle>
             Já possui uma conta?{" "}
-            <a href="#login">Clique aqui para realizar login!</a>
+            <a href="/login">Clique aqui para realizar login!</a>
           </Subtitle>
 
           <form onSubmit={handleSubmit} noValidate>
