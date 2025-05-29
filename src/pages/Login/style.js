@@ -75,7 +75,7 @@ export const Subtitle = styled.p`
 `;
 
 export const Label = styled.label`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.85rem;
   margin-bottom: 0.25rem;
   display: block;
@@ -86,6 +86,9 @@ export const Label = styled.label`
     font-size: 0.75rem;
     color: #666;
     margin-left: 0.25rem;
+  }
+  span.ast {
+    color: blue;
   }
 `;
 

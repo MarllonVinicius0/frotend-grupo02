@@ -70,7 +70,7 @@ export default function Cadastro() {
 
           <form onSubmit={handleSubmit} noValidate>
             <Label htmlFor="nome">
-              Nome Completo <span>* Obrigatório</span>
+              Nome Completo <span><span className="ast">*</span> Obrigatório</span>
             </Label>
             <Input
               id="nome"
@@ -90,7 +90,7 @@ export default function Cadastro() {
             </p>
 
             <Label htmlFor="email">
-              E-mail <span>* Obrigatório</span>
+              E-mail <span><span className="ast">*</span> Obrigatório</span>
             </Label>
             <Input
               id="email"
@@ -107,7 +107,7 @@ export default function Cadastro() {
             </p>
 
             <Label htmlFor="senha">
-              Senha <span>* Obrigatório</span>
+              Senha <span><span className="ast">*</span> Obrigatório</span>
             </Label>
             <Input
               id="senha"

@@ -59,7 +59,7 @@ export default function Login() {
 
           <form onSubmit={handleSubmit} noValidate>
             <Label htmlFor="email">
-              E-mail <span>* Obrigatório</span>
+             E-mail <span><span className="ast">*</span> Obrigatório</span>
             </Label>
             <Input
               id="email"
@@ -76,7 +76,7 @@ export default function Login() {
             </p>
 
             <Label htmlFor="senha">
-              Senha <span>* Obrigatório</span>
+              Senha <span><span className="ast">*</span> Obrigatório</span>
             </Label>
             <Input
               id="senha"
