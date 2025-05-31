@@ -22,9 +22,9 @@ export default function HeaderPage() {
         />
       </SearchWrapper>
       <Nav>
-        <NavItem href="#">Organize um Evento</NavItem>
-        <NavItem href="#">Login</NavItem>
-        <NavItem href="#">Cadastre-se</NavItem>
+        <NavItem href="/Login">Organize um Evento</NavItem>
+        <NavItem href="/Login">Login</NavItem>
+        <NavItem href="/Cadastro">Cadastre-se</NavItem>
       </Nav>
     </HeaderWrapper>
   );

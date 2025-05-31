@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   background-color: rgba(64, 167, 227, 0.9);
-  height: 36px;
+  height: 60px;
   padding: 0 32px;
   width: 100%;
   box-sizing: border-box;

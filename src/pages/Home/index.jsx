@@ -1,13 +1,15 @@
 import React from 'react';
 import Footer from '../../components/Footer'; // Importando o componente Footer
 import HeaderPage from '../../components/HeaderPages';
+import HeroSection from '../../components/HeroSection';
+import EventCarousel from '../../components/EventCarousel'; 
 
 export default function Home() {
   return (
     <div>
       <HeaderPage />
-      <h1>Bem-vindo ao Portal de Eventos</h1>
-      <p>Descubra os melhores eventos do Brasil!</p>
+      <HeroSection />
+      <EventCarousel />
       {/* Aqui você pode adicionar mais componentes ou conteúdo para a página inicial */}
       <Footer />
     </div>
