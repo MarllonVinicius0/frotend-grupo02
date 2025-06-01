@@ -70,6 +70,11 @@ export const ActionButton = styled.button`
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave para o botão */
 
+  & a{
+    text-decoration:none;
+    color:white;
+  }
+
   &:hover {
     background-color: #4CAF50; /* Um verde um pouco mais escuro no hover */
     transform: translateY(-2px); /* Efeito de "subir" no hover */
