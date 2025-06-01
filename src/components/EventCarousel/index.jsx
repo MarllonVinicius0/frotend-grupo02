@@ -1,34 +1,50 @@
 // -- importar useefect posteriormente para carregar dados de uma API real
 
-import React , { useState } from 'react';
-import { FaArrowLeft, FaArrowRight, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import {CarouselContainer, ArrowButton, ContentWrapper, ImageContainer, EventCard, CardTitle, CardDetail, CardDetailIcon} from './style';
-
+import React, { useState } from "react";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+import {
+  CarouselContainer,
+  ArrowButton,
+  ContentWrapper,
+  ImageContainer,
+  EventCard,
+  CardTitle,
+  CardDetail,
+  CardDetailIcon,
+} from "./style";
 
 // --- REMOVA OU COMENTE ESTE BLOCO DE DADOS QUANDO ESTIVER USANDO UMA API REAL ---
 const events = [
   {
     id: 1,
-    title: 'Festa de Aniversário da Cidade',
-    date: 'Sexta-feira, 23/07/25',
-    location: 'Russas - CE',
-    image: 'https://www.idace.ce.gov.br/wp-content/uploads/sites/84/2019/11/images.jpg', // Placeholder image
+    title: "Festa de Aniversário da Cidade",
+    date: "Sexta-feira, 23/07/25",
+    location: "Russas - CE",
+    image:
+      "https://www.idace.ce.gov.br/wp-content/uploads/sites/84/2019/11/images.jpg", // Placeholder image
     // You could also use a video URL here if you want to display videos
     // video: 'https://www.youtube.com/embed/your_video_id'
   },
   {
     id: 2,
-    title: 'Conferência Tech',
-    date: 'Quarta-feira, 10/08/25',
-    location: 'São Paulo - SP',
-    image: 'https://cdn.folhape.com.br/upload/dn_arquivo/2017/01/campus-party-1-1159274338jpg.jpg',
+    title: "Conferência Tech",
+    date: "Quarta-feira, 10/08/25",
+    location: "São Paulo - SP",
+    image:
+      "https://cdn.folhape.com.br/upload/dn_arquivo/2017/01/campus-party-1-1159274338jpg.jpg",
   },
   {
     id: 3,
-    title: 'Workshop de Design',
-    date: 'Sábado, 05/09/25',
-    location: 'Rio de Janeiro - RJ',
-    image: 'https://napne.com.br/wp-content/uploads/2023/05/design-thinking-supplies-1.jpg',
+    title: "Workshop de Design",
+    date: "Sábado, 05/09/25",
+    location: "Rio de Janeiro - RJ",
+    image:
+      "https://napne.com.br/wp-content/uploads/2023/05/design-thinking-supplies-1.jpg",
   },
 ];
 // --- FIM DO BLOCO A SER REMOVIDO/COMENTADO ---
@@ -59,7 +75,9 @@ const EventCarousel = () => {
       <ContentWrapper>
         <ImageContainer>
           {/* You can conditionally render an img or iframe based on currentEvent.type or if video exists */}
-          {currentEvent.image && <img src={currentEvent.image} alt={currentEvent.title} />}
+          {currentEvent.image && (
+            <img src={currentEvent.image} alt={currentEvent.title} />
+          )}
           {/* Example for video:
           {currentEvent.video && (
             <iframe
@@ -76,11 +94,15 @@ const EventCarousel = () => {
         <EventCard>
           <CardTitle>{currentEvent.title}</CardTitle>
           <CardDetail>
-            <CardDetailIcon><FaCalendarAlt /></CardDetailIcon>
+            <CardDetailIcon>
+              <FaCalendarAlt />
+            </CardDetailIcon>
             {currentEvent.date}
           </CardDetail>
           <CardDetail>
-            <CardDetailIcon><FaMapMarkerAlt /></CardDetailIcon>
+            <CardDetailIcon>
+              <FaMapMarkerAlt />
+            </CardDetailIcon>
             {currentEvent.location}
           </CardDetail>
         </EventCard>
@@ -94,9 +116,6 @@ const EventCarousel = () => {
 };
 
 export default EventCarousel;
-
-
-
 
 // --- React Component --- Quando estiver usando uma API real, você pode descomentar o código abaixo e remover o bloco de dados acima:
 
@@ -187,31 +206,34 @@ export default EventCarousel;
 
 //       <ContentWrapper>
 //         <ImageContainer>
-//           {currentEvent.image && <img src={currentEvent.image} alt={currentEvent.title} />}
-//           {/* Você pode adaptar para vídeo se sua API retornar um campo 'videoUrl'
-//           {currentEvent.videoUrl && (
-//             <iframe
-//               src={currentEvent.videoUrl}
-//               title={currentEvent.title}
-//               frameBorder="0"
-//               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-//               allowFullScreen
-//             ></iframe>
-//           )}
-//           */}
+//  // ...existing code...
+// import { Link } from 'react-router-dom';
+
+// ...existing code...
+
+//   {currentEvent.image && (
+//     <Link to={`/eventos/${currentEvent.id}`}>
+//       <img src={currentEvent.image} alt={currentEvent.title} style={{ cursor: 'pointer' }} />
+//     </Link>
+//   )}
+
 //         </ImageContainer>
 
-//         <EventCard>
-//           <CardTitle>{currentEvent.title}</CardTitle>
-//           <CardDetail>
-//             <CardDetailIcon><FaCalendarAlt /></CardDetailIcon>
-//             {currentEvent.date}
-//           </CardDetail>
-//           <CardDetail>
-//             <CardDetailIcon><FaMapMarkerAlt /></CardDetailIcon>
-//             {currentEvent.location}
-//           </CardDetail>
-//         </EventCard>
+// <EventCard>
+//   <CardTitle>
+//     <Link to={`/eventos/${currentEvent.id}`}>
+//       {currentEvent.title}
+//     </Link>
+//   </CardTitle>
+//   <CardDetail>
+//     <CardDetailIcon><FaCalendarAlt /></CardDetailIcon>
+//     {currentEvent.date}
+//   </CardDetail>
+//   <CardDetail>
+//     <CardDetailIcon><FaMapMarkerAlt /></CardDetailIcon>
+//     {currentEvent.location}
+//   </CardDetail>
+// </EventCard>
 //       </ContentWrapper>
 
 //       <ArrowButton onClick={goToNext} aria-label="Próximo evento">

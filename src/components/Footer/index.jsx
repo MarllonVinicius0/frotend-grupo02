@@ -11,6 +11,7 @@ import {
   ContactItem,
   CopyrightSection,
 } from "./style";
+import React from "react";
 
 import { LuInstagram } from "react-icons/lu";
 import { BsTwitterX } from "react-icons/bs";
