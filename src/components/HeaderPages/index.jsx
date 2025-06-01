@@ -23,7 +23,7 @@ export default function HeaderPage() {
   return (
     <>
       <HeaderWrapper>
-        <TextWrapper>InscriON</TextWrapper>
+        <TextWrapper><a href="/">InscriON</a></TextWrapper>
         
         {/* Desktop Search */}
         <SearchWrapper>

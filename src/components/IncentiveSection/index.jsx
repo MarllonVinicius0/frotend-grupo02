@@ -11,7 +11,7 @@ const IncentiveSection = () => {
         inscreva-se agora e garanta sua vaga!
       </SubMessage>
       <ActionButton onClick={() => console.log('Botão Explorar Eventos clicado!')}>
-        Explorar Eventos
+        <a href="/eventos">Explorar Eventos</a>
       </ActionButton>
     </IncentiveContainer>
   );

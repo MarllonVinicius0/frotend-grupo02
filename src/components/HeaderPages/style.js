@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 export const SearchWrapper = styled.div`
   flex: 1;
-  margin: 0 20px;
-  max-width: 350px;
+  margin: 0 100px;
+  max-width: 530px;
+  border-radius:100px;
 
   @media (max-width: 1024px) {
     margin: 0 16px;
