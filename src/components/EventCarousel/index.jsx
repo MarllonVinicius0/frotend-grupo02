@@ -16,6 +16,9 @@ import {
   CardTitle,
   CardDetail,
   CardDetailIcon,
+  MobileArrowContainer,
+  DotsContainer,
+  Dot,
 } from "./style";
 
 // --- REMOVA OU COMENTE ESTE BLOCO DE DADOS QUANDO ESTIVER USANDO UMA API REAL ---
@@ -26,9 +29,7 @@ const events = [
     date: "Sexta-feira, 23/07/25",
     location: "Russas - CE",
     image:
-      "https://www.idace.ce.gov.br/wp-content/uploads/sites/84/2019/11/images.jpg", // Placeholder image
-    // You could also use a video URL here if you want to display videos
-    // video: 'https://www.youtube.com/embed/your_video_id'
+      "https://www.idace.ce.gov.br/wp-content/uploads/sites/84/2019/11/images.jpg",
   },
   {
     id: 2,
@@ -66,29 +67,22 @@ const EventCarousel = () => {
     );
   };
 
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <CarouselContainer>
-      <ArrowButton onClick={goToPrevious} aria-label="Evento anterior">
+      {/* Desktop Arrows */}
+      <ArrowButton onClick={goToPrevious} aria-label="Evento anterior" className="desktop-arrow">
         <FaArrowLeft />
       </ArrowButton>
 
       <ContentWrapper>
         <ImageContainer>
-          {/* You can conditionally render an img or iframe based on currentEvent.type or if video exists */}
           {currentEvent.image && (
             <img src={currentEvent.image} alt={currentEvent.title} />
           )}
-          {/* Example for video:
-          {currentEvent.video && (
-            <iframe
-              src={currentEvent.video}
-              title={currentEvent.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          )}
-          */}
         </ImageContainer>
 
         <EventCard>
@@ -108,139 +102,33 @@ const EventCarousel = () => {
         </EventCard>
       </ContentWrapper>
 
-      <ArrowButton onClick={goToNext} aria-label="Próximo evento">
+      {/* Desktop Arrows */}
+      <ArrowButton onClick={goToNext} aria-label="Próximo evento" className="desktop-arrow">
         <FaArrowRight />
       </ArrowButton>
+
+      {/* Mobile Navigation */}
+      <MobileArrowContainer>
+        <ArrowButton onClick={goToPrevious} aria-label="Evento anterior" className="mobile-arrow">
+          <FaArrowLeft />
+        </ArrowButton>
+        
+        <DotsContainer>
+          {events.map((_, index) => (
+            <Dot
+              key={index}
+              active={index === currentIndex}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
+        </DotsContainer>
+
+        <ArrowButton onClick={goToNext} aria-label="Próximo evento" className="mobile-arrow">
+          <FaArrowRight />
+        </ArrowButton>
+      </MobileArrowContainer>
     </CarouselContainer>
   );
 };
 
 export default EventCarousel;
-
-// --- React Component --- Quando estiver usando uma API real, você pode descomentar o código abaixo e remover o bloco de dados acima:
-
-// const EventCarousel = () => {
-//   // 1. ESTADO PARA ARMAZENAR OS EVENTOS DA API
-//   const [events, setEvents] = useState([]);
-//   // 2. ESTADO PARA GERENCIAR O CARREGAMENTO
-//   const [loading, setLoading] = useState(true);
-//   // 3. ESTADO PARA GERENCIAR ERROS
-//   const [error, setError] = useState(null);
-
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   // 4. useEffect PARA FAZER A CHAMADA DA API
-//   useEffect(() => {
-//     const fetchEvents = async () => {
-//       try {
-//         setLoading(true); // Começa o carregamento
-//         setError(null); // Limpa qualquer erro anterior
-
-//         // SUBSTITUA ESTA URL PELA SUA URL REAL DA API
-//         const response = await fetch('SUA_URL_DA_API_AQUI/eventos');
-//         // Exemplo: const response = await fetch('https://api.meusite.com/eventos');
-
-//         if (!response.ok) {
-//           throw new Error(`Erro HTTP! status: ${response.status}`);
-//         }
-//         const data = await response.json();
-//         setEvents(data); // Armazena os eventos recebidos da API
-//       } catch (err) {
-//         console.error("Erro ao buscar eventos:", err);
-//         setError("Não foi possível carregar os eventos. Tente novamente mais tarde.");
-//       } finally {
-//         setLoading(false); // Termina o carregamento, independente de sucesso ou falha
-//       }
-//     };
-
-//     fetchEvents(); // Chama a função de busca quando o componente é montado
-//   }, []); // O array vazio [] como segundo argumento garante que useEffect rode apenas uma vez (ao montar)
-
-//   // 5. LÓGICA DE NAVEGAÇÃO DEVE CONSIDERAR QUE `events` PODE ESTAR VAZIO INICIALMENTE
-//   const currentEvent = events[currentIndex];
-
-//   const goToPrevious = () => {
-//     if (events.length === 0) return; // Evita erro se não houver eventos
-//     setCurrentIndex((prevIndex) =>
-//       prevIndex === 0 ? events.length - 1 : prevIndex - 1
-//     );
-//   };
-
-//   const goToNext = () => {
-//     if (events.length === 0) return; // Evita erro se não houver eventos
-//     setCurrentIndex((prevIndex) =>
-//       prevIndex === events.length - 1 ? 0 : prevIndex + 1
-//     );
-//   };
-
-//   // 6. ADICIONE TELAS DE CARREGAMENTO E ERRO
-//   if (loading) {
-//     return (
-//       <CarouselContainer>
-//         <p>Carregando eventos...</p> {/* OU um spinner de carregamento mais elaborado */}
-//       </CarouselContainer>
-//     );
-//   }
-
-//   if (error) {
-//     return (
-//       <CarouselContainer>
-//         <p style={{ color: 'red' }}>{error}</p>
-//       </CarouselContainer>
-//     );
-//   }
-
-//   if (events.length === 0) {
-//     return (
-//       <CarouselContainer>
-//         <p>Nenhum evento disponível no momento.</p>
-//       </CarouselContainer>
-//     );
-//   }
-
-//   return (
-//     <CarouselContainer>
-//       <ArrowButton onClick={goToPrevious} aria-label="Evento anterior">
-//         <FaArrowLeft />
-//       </ArrowButton>
-
-//       <ContentWrapper>
-//         <ImageContainer>
-//  // ...existing code...
-// import { Link } from 'react-router-dom';
-
-// ...existing code...
-
-//   {currentEvent.image && (
-//     <Link to={`/eventos/${currentEvent.id}`}>
-//       <img src={currentEvent.image} alt={currentEvent.title} style={{ cursor: 'pointer' }} />
-//     </Link>
-//   )}
-
-//         </ImageContainer>
-
-// <EventCard>
-//   <CardTitle>
-//     <Link to={`/eventos/${currentEvent.id}`}>
-//       {currentEvent.title}
-//     </Link>
-//   </CardTitle>
-//   <CardDetail>
-//     <CardDetailIcon><FaCalendarAlt /></CardDetailIcon>
-//     {currentEvent.date}
-//   </CardDetail>
-//   <CardDetail>
-//     <CardDetailIcon><FaMapMarkerAlt /></CardDetailIcon>
-//     {currentEvent.location}
-//   </CardDetail>
-// </EventCard>
-//       </ContentWrapper>
-
-//       <ArrowButton onClick={goToNext} aria-label="Próximo evento">
-//         <FaArrowRight />
-//       </ArrowButton>
-//     </CarouselContainer>
-//   );
-// };
-
-// export default EventCarousel;

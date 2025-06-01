@@ -11,7 +11,7 @@ export default function HeroSection() {
     <HeroContainer>
       <HeroContent>
         <HeroTitle>
-          Descubra, inscreva-se e viva<br />
+          Descubra, inscreva-se e viva
           experiências incríveis!
         </HeroTitle>
         <HeroSubtitle>

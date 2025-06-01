@@ -1,46 +1,156 @@
 import styled from "styled-components";
 
-
 export const CategoriesContainer = styled.section`
-  background-color: #E5E5E5; /* Fundo cinza claro conforme a imagem */
+  background-color: #E5E5E5;
   padding: 60px 20px;
-  font-family: 'Roboto', sans-serif; /* Use uma fonte mais moderna, se disponível */
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center;
+  
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    padding: 80px 40px;
+  }
+  
+  /* Desktop medium */
+  @media (max-width: 1199px) {
+    padding: 60px 30px;
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    padding: 50px 25px;
+  }
+  
+  /* Tablet small */
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
+  
+  /* Mobile large */
+  @media (max-width: 576px) {
+    padding: 35px 15px;
+  }
+  
+  /* Mobile small */
+  @media (max-width: 375px) {
+    padding: 30px 10px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 1.8em; /* Aumenta um pouco o tamanho para o destaque */
+  font-size: 1.8em;
   color: #333;
-  font-weight:bold;
+  font-weight: bold;
   margin-bottom: 32px;
-  text-align: left; /* Título alinhado à esquerda na imagem */
-  width: 100%; /* Permite alinhar à esquerda */
-  max-width: 1200px; /* Limita a largura do título como o grid */
-  padding-left: 20px; /* Um pouco de padding para não colar na borda */
+  text-align: left;
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 20px;
 
-  @media (max-width: 768px) {
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    max-width: 1400px;
+    padding-left: 30px;
+  }
+  
+  /* Desktop medium */
+  @media (max-width: 1199px) {
     font-size: 2em;
-    text-align: center; /* Centraliza em telas menores */
+    margin-bottom: 35px;
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    font-size: 1.9em;
+    margin-bottom: 30px;
+    text-align: center;
     padding-left: 0;
+  }
+  
+  /* Tablet small */
+  @media (max-width: 768px) {
+    font-size: 1.8em;
+    margin-bottom: 28px;
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  /* Mobile large */
+  @media (max-width: 576px) {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+  }
+  
+  /* Mobile small */
+  @media (max-width: 375px) {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  /* Very small screens */
+  @media (max-width: 320px) {
+    font-size: 1.4em;
   }
 `;
 
 export const CategoriesGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
-  justify-content: center; /* Centraliza os itens quando há menos do que a linha cheia */
-  gap: 50px; /* Espaço entre os cards */
-  max-width: 1200px; /* Largura máxima para a grade */
-  width: 100%; /* Ocupa a largura total disponível dentro do container */
-
-  @media (max-width: 1200px) {
-    padding: 0 20px; /* Adiciona padding nas laterais em telas médias */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 50px;
+  max-width: 1200px;
+  width: 100%;
+  justify-items: center;
+  
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 60px;
   }
-
+  
+  /* Desktop medium */
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 45px;
+    padding: 0 20px;
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 35px;
+    padding: 0 15px;
+  }
+  
+  /* Tablet small */
   @media (max-width: 768px) {
-    gap: 20px; /* Menos espaço em telas menores */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 30px;
+    padding: 0 10px;
+  }
+  
+  /* Mobile large */
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 0 5px;
+  }
+  
+  /* Mobile small */
+  @media (max-width: 375px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0;
+  }
+  
+  /* Very small screens */
+  @media (max-width: 320px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
   }
 `;
 
@@ -48,36 +158,106 @@ export const CategoryCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 180px; /* Largura fixa para cada card conforme a imagem */
+  width: 100%;
+  max-width: 180px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  border-radius: 12px; /* Borda arredondada para o card */
-  padding-bottom: 10px; /* Espaço para o título embaixo da imagem */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 12px;
+  padding-bottom: 10px;
 
   &:hover {
-    transform: translateY(-5px); /* Efeito de "subir" no hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra mais forte no hover */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   }
-
+  
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    max-width: 200px;
+    
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+  }
+  
+  /* Desktop medium */
+  @media (max-width: 1199px) {
+    max-width: 180px;
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    max-width: 160px;
+    
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    }
+  }
+  
+  /* Tablet small */
   @media (max-width: 768px) {
-    width: calc(50% - 20px); /* 2 cards por linha em tablets */
-    max-width: 150px; /* Limita o tamanho para não ficarem muito grandes */
+    max-width: 140px;
+    padding-bottom: 8px;
   }
-
-  @media (max-width: 480px) {
-    width: calc(100% - 20px); /* 1 card por linha em celulares */
-    max-width: 120px; /* Ainda menor em celulares */
+  
+  /* Mobile large */
+  @media (max-width: 576px) {
+    max-width: none;
+    width: 100%;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+  
+  /* Mobile small */
+  @media (max-width: 375px) {
+    padding-bottom: 6px;
+  }
+  
+  /* Very small screens */
+  @media (max-width: 320px) {
+    padding-bottom: 5px;
+    
+    &:hover {
+      transform: translateY(-3px);
+    }
   }
 `;
 
 export const CardImageWrapper = styled.div`
   width: 100%;
-  padding-top: 100%; /* Cria um espaço quadrado (1:1 aspect ratio) */
+  padding-top: 100%;
   position: relative;
-  border-radius: 12px; /* Borda arredondada, igual ao card */
-  overflow: hidden; /* Garante que a imagem respeite o border-radius */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para a imagem */
-  background-color: #ddd; /* Cor de fundo para o wrapper enquanto a imagem carrega */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ddd;
+  
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile */
+  @media (max-width: 576px) {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Very small screens */
+  @media (max-width: 320px) {
+    border-radius: 6px;
+  }
 `;
 
 export const CardImage = styled.img`
@@ -86,23 +266,104 @@ export const CardImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
-  border-radius: 12px; /* Aplica o border-radius diretamente na imagem também */
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+  
+  ${CategoryCard}:hover & {
+    transform: scale(1.05);
+  }
+  
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    border-radius: 15px;
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    border-radius: 10px;
+  }
+  
+  /* Mobile */
+  @media (max-width: 576px) {
+    border-radius: 8px;
+    
+    ${CategoryCard}:hover & {
+      transform: scale(1.03);
+    }
+  }
+  
+  /* Very small screens */
+  @media (max-width: 320px) {
+    border-radius: 6px;
+    
+    ${CategoryCard}:hover & {
+      transform: scale(1.02);
+    }
+  }
 `;
 
 export const CardTitle = styled.h3`
   font-size: 1.1em;
   color: #0D0D0D;
   font-weight: 600;
-  margin-top: 15px; /* Espaço entre a imagem e o título */
+  margin-top: 15px;
   text-align: center;
-  white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-  overflow: hidden; /* Esconde qualquer texto que transborde */
-  text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
-  max-width: 100%; /* Garante que o texto não exceda a largura do card */
-
-  @media (max-width: 480px) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  width: 100%;
+  
+  /* Desktop large */
+  @media (min-width: 1400px) {
+    font-size: 1.3em;
+    margin-top: 18px;
+  }
+  
+  /* Desktop medium */
+  @media (max-width: 1199px) {
+    font-size: 1.2em;
+    margin-top: 16px;
+  }
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    font-size: 1.1em;
+    margin-top: 14px;
+  }
+  
+  /* Tablet small */
+  @media (max-width: 768px) {
     font-size: 1em;
+    margin-top: 12px;
+  }
+  
+  /* Mobile large */
+  @media (max-width: 576px) {
+    font-size: 0.95em;
     margin-top: 10px;
+    white-space: normal;
+    line-height: 1.3;
+    height: auto;
+    max-height: 2.6em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Mobile small */
+  @media (max-width: 375px) {
+    font-size: 0.9em;
+    margin-top: 8px;
+  }
+  
+  /* Very small screens */
+  @media (max-width: 320px) {
+    font-size: 0.85em;
+    margin-top: 6px;
+    -webkit-line-clamp: 1;
+    white-space: nowrap;
   }
 `;

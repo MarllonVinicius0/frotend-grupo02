@@ -4,7 +4,6 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
-
 import {
   SectionWrapper,
   SectionTitle,
@@ -13,48 +12,63 @@ import {
   StyledCard,
   CardTitle,
   CardInfo,
-  ArrowButton,ContentContainer
+  ArrowButton,
+  ContentContainer
 } from "./style";
 
 const mockData = [
   {
     id: 1,
-    title: "Russas",
+    title: "Palestra 1",
+    location: "Centro de Eventos | Fortaleza - CE",
+    date: "Segunda, 16/07 às 15:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
   {
     id: 2,
-    title: "Mossoró",
+    title: "Palestra 2",
+    location: "Centro de Eventos | Fortaleza - CE",
+    date: "Terça, 17/07 às 20:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
   {
     id: 3,
-    title: "Canoa Quebrada",
+    title: "Palestra 3",
+    location: "Praça do Ferreira | Fortaleza - CE",
+    date: "Sexta, 20/07 às 22:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
   {
     id: 4,
-    title: "Nova Russas",
+    title: "Palestra 4",
+    location: "Anfiteatro do Cocó | Fortaleza - CE",
+    date: "Sábado, 21/07 às 18:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
   {
     id: 5,
-    title: "New York",
+    title: "Palestra 5",
+    location: "Centro de Eventos | Fortaleza - CE",
+    date: "Domingo, 22/07 às 17:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
   {
     id: 6,
-    title: "Austin",
+    title: "Palestra 6",
+    location: "Centro de Eventos | Fortaleza - CE",
+    date: "Segunda, 23/07 às 19:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
-   {
+  {
     id: 7,
-    title: "Moscow",
+    title: "Palestra 7",
+    location: "Centro de Eventos | Fortaleza - CE",
+    date: "Segunda, 23/07 às 19:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
 ];
 
-const CityComponent = () => {
+const HealtyComponent = () => {
   const scrollRef = useRef(null);
   
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -88,7 +102,7 @@ const CityComponent = () => {
 
   const handleScroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = 300; 
+      const scrollAmount = window.innerWidth < 768 ? 250 : 300; 
       if (direction === 'left') {
         scrollRef.current.scrollLeft -= scrollAmount;
       } else {
@@ -99,7 +113,6 @@ const CityComponent = () => {
 
   return (
     <SectionWrapper>
-      {/* O conteúdo agora fica dentro do ContentContainer para limitar a largura */}
       <ContentContainer>
         <SectionTitle level={2}>Por cidade</SectionTitle>
         <CarouselWrapper>
@@ -111,7 +124,6 @@ const CityComponent = () => {
             $show={canScrollLeft}
           />
           <ScrollContainer ref={scrollRef}>
-            {/* Voltamos a mapear a lista completa de dados */}
             {mockData.map((show) => (
               <StyledCard key={show.id} hoverable cover={<img alt={show.title} src={show.imageUrl} />}>
                 <CardTitle>{show.title}</CardTitle>
@@ -133,7 +145,7 @@ const CityComponent = () => {
   );
 };
 
-export default CityComponent;
+export default HealtyComponent;
 
 // --- INTEGRAÇÃO COM API EXTERNA ---
 // Para usar dados de uma API, descomente o código abaixo e remova 'mockData'.

@@ -76,7 +76,7 @@ const EventCategories = () => {
   */
 
 
-  return (
+ return (
     <CategoriesContainer>
       <SectionTitle>Categorias de eventos</SectionTitle>
       <CategoriesGrid>

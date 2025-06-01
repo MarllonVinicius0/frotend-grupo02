@@ -4,7 +4,6 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
-
 import {
   SectionWrapper,
   SectionTitle,
@@ -13,7 +12,8 @@ import {
   StyledCard,
   CardTitle,
   CardInfo,
-  ArrowButton,ContentContainer
+  ArrowButton,
+  ContentContainer
 } from "./style";
 
 const mockData = [
@@ -59,7 +59,7 @@ const mockData = [
     date: "Segunda, 23/07 às 19:00",
     imageUrl: "https://i.imgur.com/7y3a0G2.jpeg",
   },
-   {
+  {
     id: 7,
     title: "Palestra 7",
     location: "Centro de Eventos | Fortaleza - CE",
@@ -102,7 +102,7 @@ const HealtyComponent = () => {
 
   const handleScroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = 300; 
+      const scrollAmount = window.innerWidth < 768 ? 250 : 300; 
       if (direction === 'left') {
         scrollRef.current.scrollLeft -= scrollAmount;
       } else {
@@ -113,7 +113,6 @@ const HealtyComponent = () => {
 
   return (
     <SectionWrapper>
-      {/* O conteúdo agora fica dentro do ContentContainer para limitar a largura */}
       <ContentContainer>
         <SectionTitle level={2}>Saúde</SectionTitle>
         <CarouselWrapper>
@@ -125,7 +124,6 @@ const HealtyComponent = () => {
             $show={canScrollLeft}
           />
           <ScrollContainer ref={scrollRef}>
-            {/* Voltamos a mapear a lista completa de dados */}
             {mockData.map((show) => (
               <StyledCard key={show.id} hoverable cover={<img alt={show.title} src={show.imageUrl} />}>
                 <CardTitle>{show.title}</CardTitle>
