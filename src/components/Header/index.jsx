@@ -4,7 +4,7 @@ import { HeaderWrapper, TextWrapper } from "./style";
 export default function Header() {
   return (
     <HeaderWrapper>
-      <TextWrapper>InscriON</TextWrapper>
+      <TextWrapper><a href="/">InscriON</a></TextWrapper>
     </HeaderWrapper>
   );
 }
