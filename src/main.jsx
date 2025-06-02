@@ -6,6 +6,7 @@ import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login/Index";
 import Home from "./pages/Home";
 import Eventpage from "./pages/EventPage";
+import CategoriaPage from "./pages/CategoriaPage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/eventos" element={<Eventpage />} />
+        <Route path="/categoria" element={<CategoriaPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
