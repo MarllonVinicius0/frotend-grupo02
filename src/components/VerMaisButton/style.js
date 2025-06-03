@@ -1,55 +1,56 @@
 import styled from "styled-components";
+import { Button } from "antd";
 
-export const ButtonWrapper = styled.button`
-  display: block;
-  margin: 3rem auto 4rem auto;
-  padding: 1rem 3rem;
-  background-color: #28a745;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+export const StyledButton = styled(Button)`
+  &.ant-btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+    border-radius: 8px;
+    padding: 8px 48px;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+    transition: all 0.3s ease;
 
-  &:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-  }
+    &:hover, &:focus {
+      background-color: #218838;
+      border-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
 
-  &:active {
-    transform: translateY(0);
-  }
+    &:active {
+      transform: translateY(0);
+    }
 
-  &:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
+    &.ant-btn-loading {
+      transform: none;
+      box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+    }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  &:hover::before {
-    left: 100%;
+    &[disabled] {
+      background-color: #6c757d;
+      border-color: #6c757d;
+      transform: none;
+      box-shadow: none;
+      
+      &:hover {
+        background-color: #6c757d;
+        border-color: #6c757d;
+      }
+    }
   }
 
   @media (max-width: 768px) {
-    padding: 0.9rem 2.5rem;
+    padding: 6px 40px;
     font-size: 0.95rem;
-    margin: 2.5rem auto 3rem auto;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 32px;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 280px;
   }
 `;

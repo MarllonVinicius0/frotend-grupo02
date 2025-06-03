@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { LeftOutlined, RightOutlined, CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import {
   HighlightContainer,
   CarouselWrapper,
@@ -10,8 +11,7 @@ import {
   NavigationButton,
   IndicatorsContainer,
   Indicator,
-  LeftArrow,
-  RightArrow
+  ImageOverlay
 } from "./style";
 
 export default function HighlightEvent() {
@@ -61,18 +61,26 @@ export default function HighlightEvent() {
           alt={events[currentSlide].title} 
         />
         
+        <ImageOverlay />
+        
         <NavigationButton onClick={prevSlide} position="left">
-          <LeftArrow>❮</LeftArrow>
+          <LeftOutlined />
         </NavigationButton>
         
         <NavigationButton onClick={nextSlide} position="right">
-          <RightArrow>❯</RightArrow>
+          <RightOutlined />
         </NavigationButton>
         
         <InfoContainer>
           <EventTitle>{events[currentSlide].title}</EventTitle>
-          <EventDate>{events[currentSlide].date}</EventDate>
-          <EventLocation>{events[currentSlide].location}</EventLocation>
+          <EventDate>
+            <CalendarOutlined />
+            {events[currentSlide].date}
+          </EventDate>
+          <EventLocation>
+            <EnvironmentOutlined />
+            {events[currentSlide].location}
+          </EventLocation>
         </InfoContainer>
         
         <IndicatorsContainer>

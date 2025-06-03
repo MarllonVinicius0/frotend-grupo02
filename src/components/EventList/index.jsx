@@ -1,8 +1,21 @@
 import React, { useState } from "react";
-import { GridContainer, SectionHeader, EventsSection } from "./style";
+import { 
+  Row, 
+  Col, 
+  Typography, 
+  Button,
+  Empty 
+} from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import EventCard from "../EventCard";
-import SectionTitle from "../SectionTitle";
-import VerMaisButton from "../VerMaisButton";
+import { 
+  EventsSection, 
+  SectionHeader, 
+  GridContainer, 
+  LoadMoreContainer 
+} from "./style";
+
+const { Title } = Typography;
 
 const eventosMock = [
   {
@@ -10,7 +23,7 @@ const eventosMock = [
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra da Educação 2025",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
+    dataHora: "Segunda, 16h07 às 15h00",
     categoria: "educacao"
   },
   {
@@ -18,7 +31,7 @@ const eventosMock = [
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
+    dataHora: "Segunda, 16h07 às 15h00",
     categoria: "tecnologia"
   },
   {
@@ -26,31 +39,31 @@ const eventosMock = [
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "educacao"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "negocios"
   },
   {
     id: 4,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "tecnologia"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "saude"
   },
   {
     id: 5,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "educacao"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "negocios"
   },
   {
     id: 6,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
+    dataHora: "Segunda, 16h07 às 15h00",
     categoria: "tecnologia"
   },
   {
@@ -58,7 +71,7 @@ const eventosMock = [
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
+    dataHora: "Segunda, 16h07 às 15h00",
     categoria: "educacao"
   },
   {
@@ -66,78 +79,156 @@ const eventosMock = [
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "tecnologia"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "negocios"
   },
   {
     id: 9,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "educacao"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "tecnologia"
   },
   {
     id: 10,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "tecnologia"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "educacao"
   },
   {
     id: 11,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "educacao"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "saude"
   },
   {
     id: 12,
     imagem: "/src/assets/evento-destaque.jpg",
     titulo: "Palestra 2",
     local: "Centro de Eventos | Fortaleza - CE",
-    dataHora: "Segunda, 19h07 às 19h30",
-    categoria: "tecnologia"
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "negocios"
   },
+  {
+    id: 13,
+    imagem: "/src/assets/evento-destaque.jpg",
+    titulo: "Palestra 2",
+    local: "Centro de Eventos | Fortaleza - CE",
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "negocios"
+  },
+  {
+    id: 14,
+    imagem: "/src/assets/evento-destaque.jpg",
+    titulo: "Palestra 2",
+    local: "Centro de Eventos | Fortaleza - CE",
+    dataHora: "Segunda, 16h07 às 15h00",
+    categoria: "negocios"
+  }
 ];
 
 export default function EventList() {
-  const [visibleEvents, setVisibleEvents] = useState(12);
+  const [visibleEvents, setVisibleEvents] = useState(8);
+  const [loading, setLoading] = useState(false);
 
   const handleEventClick = (evento) => {
     console.log('Evento clicado:', evento);
-    // Aqui você pode adicionar navegação ou modal
   };
 
-  const handleVerMais = () => {
-    alert("Você clicou em Ver Mais Eventos!");
-    // Aqui você pode chamar uma função para carregar mais eventos
+  const handleLoadMore = async () => {
+    setLoading(true);
+    setTimeout(() => {
+      setVisibleEvents(prev => prev + 8);
+      setLoading(false);
+    }, 1000);
   };
+
+  const displayedEvents = eventosMock.slice(0, visibleEvents);
 
   return (
     <EventsSection>
-      <SectionTitle>Eventos Imperdíveis!</SectionTitle>
-      
       <SectionHeader>
-        <h3>Todos os Eventos</h3>
+        <Title 
+          level={2} 
+          style={{ 
+            color: 'rgb(15, 77, 148)', 
+            marginBottom: '8px',
+            fontSize: '2rem',
+            fontWeight: 600
+          }}
+        >
+          Eventos Imperdíveis!
+        </Title>
+        <Title 
+          level={3} 
+          style={{ 
+            color: '#333', 
+            marginBottom: 0,
+            fontSize: '1.4rem',
+            fontWeight: 600
+          }}
+        >
+          Todos os Eventos
+        </Title>
       </SectionHeader>
-      
+
       <GridContainer>
-        {eventosMock.slice(0, visibleEvents).map((evento) => (
-          <EventCard
-            key={evento.id}
-            imagem={evento.imagem}
-            titulo={evento.titulo}
-            local={evento.local}
-            dataHora={evento.dataHora}
-            onClick={() => handleEventClick(evento)}
+        {displayedEvents.length > 0 ? (
+          <Row gutter={[24, 24]}>
+            {displayedEvents.map((evento) => (
+              <Col 
+                key={evento.id}
+                xs={24} 
+                sm={12} 
+                md={8} 
+                lg={6}
+              >
+                <EventCard
+                  imagem={evento.imagem}
+                  titulo={evento.titulo}
+                  local={evento.local}
+                  dataHora={evento.dataHora}
+                  onClick={() => handleEventClick(evento)}
+                />
+              </Col>
+            ))}
+          </Row>
+        ) : (
+          <Empty 
+            description="Nenhum evento encontrado"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
           />
-        ))}
+        )}
       </GridContainer>
-      
-      <VerMaisButton onClick={handleVerMais} />
+
+      {eventosMock.length > visibleEvents && (
+        <LoadMoreContainer>
+          <Button
+            type="primary"
+            size="large"
+            icon={<PlusOutlined />}
+            onClick={handleLoadMore}
+            loading={loading}
+            style={{
+              backgroundColor: '#28a745',
+              borderColor: '#28a745',
+              borderRadius: '8px',
+              padding: '8px 48px',
+              height: 'auto',
+              fontSize: '1rem',
+              fontWeight: 600,
+              boxShadow: '0 2px 4px rgba(40, 167, 69, 0.2)',
+            }}
+          >
+            {loading ? 'Carregando...' : 'Ver Mais Eventos'}
+          </Button>
+        </LoadMoreContainer>
+      )}
     </EventsSection>
   );
 }

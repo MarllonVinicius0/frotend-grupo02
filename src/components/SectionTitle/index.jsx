@@ -1,6 +1,24 @@
 import React from "react";
-import { TitleWrapper } from "./style";
+import { Typography } from "antd";
+import { StyledTitle } from "./style";
 
-export default function SectionTitle({ children }) {
-  return <TitleWrapper>{children}</TitleWrapper>;
+const { Title } = Typography;
+
+export default function SectionTitle({ 
+  children, 
+  level = 2, 
+  style = {},
+  className = "",
+  ...props 
+}) {
+  return (
+    <StyledTitle 
+      level={level}
+      style={style}
+      className={className}
+      {...props}
+    >
+      {children}
+    </StyledTitle>
+  );
 }

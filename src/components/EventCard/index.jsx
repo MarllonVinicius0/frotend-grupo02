@@ -1,29 +1,28 @@
 import React from "react";
-import {
-  CardContainer,
-  CardImage,
-  CardContent,
-  CardTitle,
-  CardInfo,
-  DateIcon,
-  LocationIcon,
-} from "./style";
+import { Card, Typography } from "antd";
+import { StyledCard, EventInfo } from "./style";
 
-export default function EventCard({ imagem, titulo, local, dataHora, onClick }) {
+const { Meta } = Card;
+const { Text } = Typography;
+
+export default function EventCard({ 
+  imagem, 
+  titulo, 
+  local, 
+  dataHora, 
+  onClick 
+}) {
   return (
-    <CardContainer onClick={onClick}>
-      <CardImage src={imagem} alt={titulo} />
-      <CardContent>
-        <CardTitle>{titulo}</CardTitle>
-        <CardInfo>
-          <LocationIcon>📍</LocationIcon>
-          {local}
-        </CardInfo>
-        <CardInfo>
-          <DateIcon>📅</DateIcon>
-          {dataHora}
-        </CardInfo>
-      </CardContent>
-    </CardContainer>
+    <StyledCard
+      hoverable
+      cover={<img alt={titulo} src={imagem} />}
+      onClick={onClick}
+    >
+      <EventInfo>
+        <h3>{titulo}</h3>
+        <Text>{local}</Text>
+        <Text>{dataHora}</Text>
+      </EventInfo>
+    </StyledCard>
   );
 }
