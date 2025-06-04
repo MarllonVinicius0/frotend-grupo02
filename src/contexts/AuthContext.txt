@@ -1,0 +1,58 @@
+import { createContext, useState } from "react";
+
+export const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Esqueleto para login futuro com API
+  const login = async (credentials) => {
+    setLoading(true);
+    setError(null);
+    try {
+      // Exemplo futuro:
+      // const response = await api.post('/login', credentials);
+      // const { token } = response.data;
+      // setToken(token);
+      // setIsLoggedIn(true);
+      // localStorage.setItem('token', token);
+
+      // Simulação temporária:
+      setTimeout(() => {
+        setToken('fake-token');
+        setIsLoggedIn(true);
+        setLoading(false);
+      }, 1000);
+    } catch {
+      setError('Falha no login.');
+      setIsLoggedIn(false);
+      setToken(null);
+      setLoading(false);
+    }
+  };
+
+  // Esqueleto para logout
+  const logout = () => {
+    setIsLoggedIn(false);
+    setToken(null);
+    localStorage.removeItem('token');
+  };
+
+  // Esqueleto para checar token salvo (ex: ao recarregar a página)
+  // useEffect(() => {
+  //   const savedToken = localStorage.getItem('token');
+  //   if (savedToken) {
+  //     setToken(savedToken);
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, token, login, logout, loading, error }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}

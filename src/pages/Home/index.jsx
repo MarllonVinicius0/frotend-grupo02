@@ -8,16 +8,21 @@ import IncentiveSection from '../../components/IncentiveSection'; // Importando 
 import EntertainmentComponent from '../../components/EntertainmentComponent';
 import HealtyComponent from '../../components/HealthyComponent';
 import CityComponent from '../../components/CityComponent'; // Importando o componente CityComponent
+import HeaderLoggedUser from '../../components/HeaderLoggedUser';
+import { useAuth } from '../../contexts/useAuth';
 
 export default function Home() {
+
+  const { isLoggedIn } = useAuth();
+
+
   return (
     <div>
-      <HeaderPage />
+      {isLoggedIn ? <HeaderLoggedUser /> : <HeaderPage />}
       <HeroSection />
       <EventCarousel />
       <EventCategories />
       <HealtyComponent /> 
-      {/* Aqui você pode adicionar mais componentes ou conteúdo para a página inicial */}
       <EntertainmentComponent />
       <CityComponent />
       <IncentiveSection />
