@@ -93,17 +93,23 @@ export const Highlight = styled.span`
 
 export const StyledButton = styled(Button)`
   &.ant-btn-primary {
-    background-color: #1ed760;
-    border-color: #1ed760;
+    background-color: ${props => props.$isRegistered ? '#8A96A8' : '#1ed760'};
+    border-color: ${props => props.$isRegistered ? '#8A96A8' : '#1ed760'};
     font-weight: 700;
     font-size: 1rem;
     height: auto;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
     
     &:hover {
-      background-color: #17b450 !important;
-      border-color: #17b450 !important;
+      background-color: ${props => props.$isRegistered ? '#8A96A8' : '#17b450'} !important;
+      border-color: ${props => props.$isRegistered ? '#8A96A8' : '#17b450'} !important;
+    }
+    
+    .anticon {
+      margin-right: 8px;
     }
   }
 `;

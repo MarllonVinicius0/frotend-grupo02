@@ -7,7 +7,7 @@ import {
 } from "./style";
 import ActivityList from "../ActivityList";
 
-export default function EventDescription() {
+export default function EventDescription({ isRegistered = false }) {
   return (
     <DescriptionBox>
       <StyledCard bordered={false}>
@@ -19,7 +19,7 @@ export default function EventDescription() {
           da área para discutir o sistema de ensino do Brasil.
         </StyledParagraph>
       </StyledCard>
-      <ActivityList />
+      <ActivityList isSubscribed={isRegistered} />
     </DescriptionBox>
   );
 }

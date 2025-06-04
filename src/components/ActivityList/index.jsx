@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Pagination, Empty, Spin } from "antd";
-import ActivityCard from "../ActivityCard"; // Ajuste o caminho conforme sua estrutura
+import ActivityCard from "../ActivityCard";
 import { 
   SectionContainer, 
   SectionTitle, 
@@ -23,9 +23,11 @@ const atividades = [
 export default function ActivityList({ 
   loading = false,
   pageSize = 4,
-  showPagination = true
+  showPagination = true,
+  isSubscribed = false
 }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedActivities, setSelectedActivities] = useState({});
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -33,6 +35,27 @@ export default function ActivityList({
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleAddActivity = (activityId) => {
+    setSelectedActivities(prev => ({
+      ...prev,
+      [activityId]: (prev[activityId] || 0) + 1
+    }));
+  };
+
+  const handleRemoveActivity = (activityId) => {
+    setSelectedActivities(prev => {
+      const newCount = Math.max(0, (prev[activityId] || 0) - 1);
+      if (newCount === 0) {
+        const { [activityId]: removed, ...rest } = prev;
+        return rest;
+      }
+      return {
+        ...prev,
+        [activityId]: newCount
+      };
+    });
   };
 
   if (loading) {
@@ -67,6 +90,10 @@ export default function ActivityList({
           <ActivityCard
             key={atividade.id}
             titulo={atividade.titulo}
+            isSubscribed={isSubscribed}
+            onAdd={() => handleAddActivity(atividade.id)}
+            onRemove={() => handleRemoveActivity(atividade.id)}
+            selectedCount={selectedActivities[atividade.id] || 0}
           />
         ))}
       </ActivityListContainer>

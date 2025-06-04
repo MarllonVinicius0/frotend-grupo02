@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Space } from "antd";
-import { CalendarOutlined, EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
+import { CalendarOutlined, EnvironmentOutlined, UserOutlined, CheckOutlined } from "@ant-design/icons";
 import {
   HeaderBox,
   Title,
@@ -14,7 +14,8 @@ import {
   StyledButton
 } from "./style";
 
-export default function EventHeaderBox() {
+export default function EventHeaderBox({ isRegistered, participantCount, onRegistrationChange }) {
+
   return (
     <Wrapper>
       <HeaderBox>
@@ -43,10 +44,22 @@ export default function EventHeaderBox() {
               Participantes
             </StyledText>
             <br />
-            <Highlight>847 confirmados</Highlight>
+            <Highlight>{participantCount} confirmados</Highlight>
           </div>
-          <StyledButton type="primary" size="large">
-            Inscrever-se Agora
+          <StyledButton 
+            type="primary" 
+            size="large"
+            onClick={onRegistrationChange}
+            $isRegistered={isRegistered}
+          >
+            {isRegistered ? (
+              <>
+                <CheckOutlined />
+                Inscrito
+              </>
+            ) : (
+              "Inscrever-se Agora"
+            )}
           </StyledButton>
         </RightContent>
       </HeaderBox>

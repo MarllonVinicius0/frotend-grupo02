@@ -11,17 +11,23 @@ import {
   InfoValue
 } from "./style";
 
-export default function EventSidebarInfo() {
+export default function EventSidebarInfo({ isRegistered, participantCount, onRegistrationChange }) {
   return (
     <SidebarBox>
       <StyledCard bordered={false}>
-        <StyledButton type="primary" size="large" block>
-          Inscrever-se Agora
+        <StyledButton 
+          type="primary" 
+          size="large" 
+          block
+          onClick={onRegistrationChange}
+          $isRegistered={isRegistered}
+        >
+          {isRegistered ? "Desinscrever-se" : "Inscrever-se Agora"}
         </StyledButton>
 
         <InfoItem>
           <StyledText>
-            847 pessoas já se inscreveram
+            {participantCount} pessoas já se inscreveram
           </StyledText>
         </InfoItem>
 

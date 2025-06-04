@@ -27,18 +27,19 @@ export const StyledCard = styled(Card)`
 
 export const StyledButton = styled(Button)`
   &.ant-btn-primary {
-    background-color: #1674B3;
-    border-color: #1674B3;
+    background-color: ${props => props.$isRegistered ? '#DC2626' : '#1674B3'};
+    border-color: ${props => props.$isRegistered ? '#DC2626' : '#1674B3'};
     font-weight: 700;
     font-size: 1rem;
     height: auto;
     padding: 0.75rem;
     border-radius: 8px;
     margin-bottom: 1.2rem;
+    transition: all 0.3s ease;
     
     &:hover {
-      background-color: #1FA0EA !important;
-      border-color: #1FA0EA !important;
+      background-color: ${props => props.$isRegistered ? '#ff7875' : '#1FA0EA'} !important;
+      border-color: ${props => props.$isRegistered ? '#ff7875' : '#1FA0EA'} !important;
     }
   }
 `;
