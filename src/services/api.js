@@ -1,10 +1,17 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://sua-api.com/api",
-    headers:{
-        "Content-Type":"application/json",
-    },
+  baseURL: "http://seu-backend.com/api", // ajuste depois
 });
 
-export default api;
+export const getEventsByCategory = async (categoryId) => {
+  // Ajuste a rota conforme seu backend
+  const response = await api.get(`/eventos?categoria=${categoryId}`);
+  return response.data;
+};
+
+export const getHighlightEventByCategory = async (categoryId) => {
+  // Ajuste a rota conforme seu backend
+  const response = await api.get(`/eventos/destaque?categoria=${categoryId}`);
+  return response.data;
+};

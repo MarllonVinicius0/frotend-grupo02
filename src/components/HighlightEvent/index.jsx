@@ -14,6 +14,32 @@ import {
   ImageOverlay
 } from "./style";
 
+//Implementação Posterior
+
+// import { useEffect } from "react";
+//import {getHighlightEvents} from "../../services/api"; // Importa a função para buscar eventos
+
+
+//export default function HighlightEvent({ categoriaId }) {
+//  const [highlight, setHighlight] = useState(null);
+//  const [loading, setLoading] = useState(true);
+
+//  useEffect(() => {
+//    setLoading(true);
+//    getHighlightEventByCategory(categoriaId)
+//      .then(data => setHighlight(data))
+//      .catch(() => setHighlight(null))
+//      .finally(() => setLoading(false));
+// }, [categoriaId]);
+
+//  if (loading) return <div>Carregando evento em destaque...</div>;
+//  if (!highlight) return <div>Nenhum evento em destaque.</div>;
+
+
+
+
+
+
 export default function HighlightEvent() {
   const [currentSlide, setCurrentSlide] = useState(0);
 

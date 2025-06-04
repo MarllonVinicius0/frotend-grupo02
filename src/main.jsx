@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/eventos" element={<Eventpage />} />
-        <Route path="/categoria" element={<CategoriaPage />} />
+        <Route path="/categoria/:id" element={<CategoriaPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

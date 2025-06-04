@@ -15,6 +15,31 @@ import {
   LoadMoreContainer 
 } from "./style";
 
+//Implementação Posterior 
+
+// import{getEventsByCategory} from "../../services/eventService"; // Importar serviço de eventos se necessário
+
+// import{useEffect} from "react"; // Importar useEffect se necessário para buscar eventos
+
+//export default function EventList({ categoriaId }) {
+//  const [events, setEvents] = useState([]);
+//  const [loading, setLoading] = useState(true);
+
+//  useEffect(() => {
+//    setLoading(true);
+//    getEventsByCategory(categoriaId)
+//      .then(data => setEvents(data))
+//      .catch(() => setEvents([]))
+//      .finally(() => setLoading(false));
+//  }, [categoriaId]);
+
+//if (loading) return <div>Carregando eventos...</div>;
+//  if (events.length === 0) return <div>Nenhum evento encontrado.</div>;
+
+
+
+
+
 const { Title } = Typography;
 
 const eventosMock = [

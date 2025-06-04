@@ -5,6 +5,7 @@ import SaudeImg from "../../assets/img/Saude.png";
 import EntretenimentoImg from "../../assets/img/Entret.png";
 import ModaBelezaImg from "../../assets/img/Moda.png";
 import GastronomiaImg from "../../assets/img/Gastro.png";
+import { useNavigate } from "react-router-dom";
 
 // --- Dados de Exemplo das Categorias ---
 // Em um projeto real, você buscaria isso de uma API, assim como nos eventos.
@@ -76,22 +77,27 @@ const EventCategories = () => {
   */
 
 
- return (
-    <CategoriesContainer>
-      <SectionTitle>Categorias de eventos</SectionTitle>
-      <CategoriesGrid>
-        {categories.map((category) => (
-          // Usar um link real aqui se cada categoria tiver uma página
-          <CategoryCard key={category.id} onClick={() => console.log('Clicou na categoria:', category.name)}>
-            <CardImageWrapper>
-              <CardImage src={category.image} alt={category.name} />
-            </CardImageWrapper>
-            <CardTitle>{category.name}</CardTitle>
-          </CategoryCard>
-        ))}
-      </CategoriesGrid>
-    </CategoriesContainer>
-  );
+const navigate = useNavigate();
+
+return (
+  <CategoriesContainer>
+    <SectionTitle>Categorias de eventos</SectionTitle>
+    <CategoriesGrid>
+      {categories.map((category) => (
+        <CategoryCard
+          key={category.id}
+          onClick={() => navigate(`/categoria/${category.id}`)}
+          style={{ cursor: "pointer" }}
+        >
+          <CardImageWrapper>
+            <CardImage src={category.image} alt={category.name} />
+          </CardImageWrapper>
+          <CardTitle>{category.name}</CardTitle>
+        </CategoryCard>
+      ))}
+    </CategoriesGrid>
+  </CategoriesContainer>
+);
 };
 
 export default EventCategories;
