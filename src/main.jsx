@@ -12,6 +12,7 @@ import { AuthProvider } from "./contexts/AuthProvider";
 import RotaProtegida from "./routes/RotaProtegida";
 import TelaInscritos from "./pages/ListaInscritosAtividade";
 import TelaInscritosEvento from "./pages/ListainscritosEvento";
+import EventDetailsPage from "./pages/EventDetailsPage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/eventos" element={<Eventpage />} />
           <Route path="/categoria/:id" element={<CategoriaPage />} />
+          <Route path="/evento_esp" element={<EventDetailsPage />} />
           <Route path="/listaInscritos" element={<TelaInscritos />} />
           <Route path="/listaInscritoseventos" element={<TelaInscritosEvento />} />
         </Routes>
