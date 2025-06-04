@@ -7,7 +7,9 @@ import Login from "./pages/Login/Index";
 import Home from "./pages/Home";
 import Eventpage from "./pages/EventPage";
 import CategoriaPage from "./pages/CategoriaPage";
-import { AuthProvider } from "./contexts/AuthContext";
+import HomeLogada from "./pages/HomeLogada";
+import { AuthProvider } from "./contexts/AuthProvider";
+import RotaProtegida from "./routes/RotaProtegida";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -15,6 +17,14 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/home-usuario"
+            element={
+              <RotaProtegida>
+                <HomeLogada />
+              </RotaProtegida>
+            }
+          />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/eventos" element={<Eventpage />} />

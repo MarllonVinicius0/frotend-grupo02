@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   ContainerConteudo,
   LeftSide,
@@ -12,12 +12,16 @@ import {
   erroStyle,
 } from "./style";
 import Header from "../../components/Header";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
   const [errors, setErrors] = useState({});
+
+  const { login, loading, error } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   function validarFormulario() {
     const novosErros = {};
@@ -36,12 +40,12 @@ export default function Login() {
     return Object.keys(novosErros).length === 0;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (validarFormulario()) {
-      alert("Formulário válido! Pode enviar os dados para backend.");
-      // enviar dados aqui
+      await login({ email, senha }); // simulado por enquanto
+      navigate("/home-usuario"); // redireciona após login
     }
   }
 
@@ -59,7 +63,7 @@ export default function Login() {
 
           <form onSubmit={handleSubmit} noValidate>
             <Label htmlFor="email">
-             E-mail <span><span className="ast">*</span> Obrigatório</span>
+              E-mail <span><span className="ast">*</span> Obrigatório</span>
             </Label>
             <Input
               id="email"
@@ -92,7 +96,13 @@ export default function Login() {
               {errors.senha || "\u00A0"}
             </p>
 
-            <Button type="submit">Logar</Button>
+            <Button type="submit" disabled={loading}>
+              {loading ? "Entrando..." : "Logar"}
+            </Button>
+
+            {error && (
+              <p style={{ color: "red", marginTop: "10px" }}>{error}</p>
+            )}
           </form>
         </RightSide>
       </ContainerConteudo>

@@ -8,7 +8,7 @@ import IncentiveSection from "../../components/IncentiveSection"; // Importando 
 import EntertainmentComponent from "../../components/EntertainmentComponent";
 import HealtyComponent from "../../components/HealthyComponent";
 import CityComponent from "../../components/CityComponent"; // Importando o componente CityComponent
-
+import HeaderLoggedUser from "../../components/HeaderLoggedUser"; // Importando o Header para usuário logado
 
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div>
-      <HeaderPage />
+      <HeaderLoggedUser />
       <HeroSection />
       <EventCarousel />
       <EventCategories />
