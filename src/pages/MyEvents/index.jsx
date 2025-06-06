@@ -41,42 +41,50 @@ function MyEvents() {
     },
   ];
 
-  const columns = [
+const columns = [
     {
-      title: "Evento",
-      dataIndex: "evento",
-      key: "evento",
-      render: (text) => <Text strong>{text}</Text>,
+        title: "Evento",
+        dataIndex: "evento",
+        key: "evento",
+        render: (text) => (
+            <Text
+                strong
+                style={{ cursor: "pointer", }}
+                onClick={() => window.location.href = "/eventadm"}
+            >
+                {text}
+            </Text>
+        ),
     },
     {
-      title: "Data do Evento",
-      dataIndex: "data",
-      key: "data",
-      render: (text) => <Text>{text}</Text>,
+        title: "Data do Evento",
+        dataIndex: "data",
+        key: "data",
+        render: (text) => <Text>{text}</Text>,
     },
     {
-      title: "Participantes",
-      dataIndex: "participantes",
-      key: "participantes",
-      render: (num) => <Text>{num}</Text>,
+        title: "Participantes",
+        dataIndex: "participantes",
+        key: "participantes",
+        render: (num) => <Text>{num}</Text>,
     },
     {
-      title: "Ações",
-      key: "acoes",
-      render: () => (
-        <Space size="small">
-          <ActionButton type="text" icon={<EditOutlined />} size="small" /> 
-          <ActionButton type="text" icon={<CopyOutlined />} size="small" />
-          <ActionButton
-            type="text"
-            icon={<DeleteOutlined />}
-            size="small"
-            danger
-          />
-        </Space>
-      ),
+        title: "Ações",
+        key: "acoes",
+        render: () => (
+            <Space size="small">
+                <ActionButton type="text" icon={<EditOutlined />} size="small" /> 
+                <ActionButton type="text" icon={<CopyOutlined />} size="small" />
+                <ActionButton
+                    type="text"
+                    icon={<DeleteOutlined />}
+                    size="small"
+                    danger
+                />
+            </Space>
+        ),
     },
-  ];
+];
 
   return (
     <>
