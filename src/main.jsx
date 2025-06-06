@@ -15,6 +15,7 @@ import TelaInscritosEvento from "./pages/ListainscritosEvento";
 import EventDetailsPage from "./pages/EventDetailsPage";
 import AdminCreateEventPage from "./pages/AdminCreateEventPage";
 import MyEvents from "./pages/MyEvents";
+import EventAdm from "./pages/EventAdm";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -39,6 +40,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/listaInscritoseventos" element={<TelaInscritosEvento />} />
           <Route path="/organize-evento" element={<AdminCreateEventPage />} />
           <Route path="/myevents" element={<MyEvents />} />
+          <Route path ="/eventadm" element = {<EventAdm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
