@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PageWrapper, ContentRow } from "./style";
 import VoltarLink from "../../components/VoltarLink";
 import PageHeader from "../../components/PageHeader";
@@ -8,19 +8,33 @@ import HeaderLoggedUser from "../../components/HeaderLoggedUser";
 import FooterButtons from "../../components/FooterButtons";
 
 export default function AdminCreateEventPage() {
+  // Estado compartilhado
+  const [dataInicioEvento, setDataInicioEvento] = useState(null);
+  const [dataFimEvento, setDataFimEvento] = useState(null);
+
   return (
     <PageWrapper>
       <HeaderLoggedUser />
-      <VoltarLink to="/admin/eventos" />
+      <VoltarLink to="/eventadm" />
       <PageHeader
         titulo="Criar Novo Evento"
         subtitulo="Configure todos os detalhes do seu evento e suas atividades"
       />
       <ContentRow>
-        <EventFormCard />
-        <EventActivitiesCard />
+        <EventFormCard
+          dataInicio={dataInicioEvento}
+          dataFim={dataFimEvento}
+          setDataInicio={setDataInicioEvento}
+          setDataFim={setDataFimEvento}
+        />
+        <EventActivitiesCard
+          dataInicioEvento={dataInicioEvento}
+          dataFimEvento={dataFimEvento}
+        />
       </ContentRow>
-      <FooterButtons onPublicar={() => console.log("Enviar dados do evento")} />
+      <FooterButtons onPublicar={() => console.log("Enviar dados do evento")} 
+        textoConfirmar="Publicar Evento"
+      />
     </PageWrapper>
   );
 }

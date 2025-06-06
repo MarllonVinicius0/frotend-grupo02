@@ -28,13 +28,13 @@ import {
   ClockCircleOutlined
 } from "@ant-design/icons";
 
+import dayjs from 'dayjs';
+
 const { TextArea } = Input;
 
-export default function EventActivitiesCard() {
-  const [atividades, setAtividades] = useState([
+export default function EventActivitiesCard({ dataInicioEvento, dataFimEvento, atividadesIniciais = [] }) {
+  const [atividades, setAtividades] = useState(atividadesIniciais);
 
-  ]);
-  
   const [nova, setNova] = useState({
     titulo: "",
     dataInicio: null,
@@ -52,6 +52,18 @@ export default function EventActivitiesCard() {
       return;
     }
 
+    if (dataInicio.isAfter(dataFim)) {
+      message.error("A data de início não pode ser posterior à data de término!");
+      return;
+    }
+
+    if (dataInicio.isSame(dataFim, 'day')) {
+      if (horaInicio.isAfter(horaFim) || horaInicio.isSame(horaFim)) {
+        message.error("O horário de início deve ser anterior ao horário de término!");
+        return;
+      }
+    }
+
     setAtividades([...atividades, { ...nova, id: Date.now() }]);
     setNova({
       titulo: "",
@@ -62,18 +74,96 @@ export default function EventActivitiesCard() {
       horaFim: null,
       capacidade: ""
     });
+    message.success("Atividade adicionada com sucesso!");
   };
 
   const handleRemove = (id) => {
     setAtividades(atividades.filter((a) => a.id !== id));
+    message.success("Atividade removida com sucesso!");
   };
 
   const handleCapacidadeChange = (e) => {
     const value = e.target.value;
-    // Permite apenas números positivos ou campo vazio
     if (value === "" || (Number(value) >= 0 && !isNaN(value))) {
       setNova({ ...nova, capacidade: value });
     }
+  };
+
+  const handleDataInicioChange = (date) => {
+    setNova((prev) => ({
+      ...prev,
+      dataInicio: date,
+      dataFim: prev.dataFim && date && date.isAfter(prev.dataFim) ? null : prev.dataFim
+    }));
+
+    if (nova.dataFim && date && date.isAfter(nova.dataFim)) {
+      message.warning('Data de fim foi limpa pois era anterior à nova data de início.');
+    }
+  };
+
+  const handleDataFimChange = (date) => {
+    if (nova.dataInicio && date && date.isBefore(nova.dataInicio)) {
+      message.error('A data de término deve ser posterior ou igual à data de início!');
+      return;
+    }
+    setNova({ ...nova, dataFim: date });
+  };
+
+  const handleHoraInicioChange = (time) => {
+    setNova((prev) => ({
+      ...prev,
+      horaInicio: time,
+      horaFim:
+        prev.dataInicio &&
+        prev.dataFim &&
+        prev.dataInicio.isSame(prev.dataFim, 'day') &&
+        prev.horaFim &&
+        (time.isAfter(prev.horaFim) || time.isSame(prev.horaFim))
+          ? null
+          : prev.horaFim
+    }));
+
+    if (
+      nova.dataInicio &&
+      nova.dataFim &&
+      nova.dataInicio.isSame(nova.dataFim, 'day') &&
+      nova.horaFim &&
+      time &&
+      (time.isAfter(nova.horaFim) || time.isSame(nova.horaFim))
+    ) {
+      message.warning('Horário de término foi limpo pois era anterior ou igual ao novo horário de início.');
+    }
+  };
+
+  const handleHoraFimChange = (time) => {
+    if (
+      nova.dataInicio &&
+      nova.dataFim &&
+      nova.dataInicio.isSame(nova.dataFim, 'day') &&
+      nova.horaInicio &&
+      time &&
+      (time.isBefore(nova.horaInicio) || time.isSame(nova.horaInicio))
+    ) {
+      message.error('O horário de término deve ser posterior ao horário de início!');
+      return;
+    }
+
+    setNova({ ...nova, horaFim: time });
+  };
+
+  // Corrigido: evita quebra ao acessar props nulas
+  const disabledDataInicio = (current) => {
+    const today = dayjs().startOf('day');
+    const beforeStart = dataInicioEvento && current.isBefore(dayjs(dataInicioEvento), 'day');
+    const afterEnd = dataFimEvento && current.isAfter(dayjs(dataFimEvento), 'day');
+    return current && (current.isBefore(today) || beforeStart || afterEnd);
+  };
+
+  const disabledDataFim = (current) => {
+    if (!nova.dataInicio) return true;
+    const beforeActivityStart = current.isBefore(nova.dataInicio, 'day');
+    const afterEventEnd = dataFimEvento && current.isAfter(dayjs(dataFimEvento), 'day');
+    return current && (beforeActivityStart || afterEventEnd);
   };
 
   return (
@@ -91,7 +181,9 @@ export default function EventActivitiesCard() {
                 <ActivityInfo>
                   <div className="activity-title">{a.titulo}</div>
                   <Typography.Text type="secondary" className="activity-date">
-                    {a.dataInicio?.format ? a.dataInicio.format("DD/MM/YY") : a.dataInicio}
+                    {a.dataInicio?.format("DD/MM/YYYY")}
+                    {a.dataFim && !a.dataInicio.isSame(a.dataFim, 'day') &&
+                      ` - ${a.dataFim.format("DD/MM/YYYY")}`}
                   </Typography.Text>
                 </ActivityInfo>
                 <ActivityActions>
@@ -126,24 +218,27 @@ export default function EventActivitiesCard() {
           </StyledForm.Item>
 
           <TwoColumn>
-            <StyledForm.Item label="mm/dd/yyyy" className="date-label">
+            <StyledForm.Item label="dd/mm/aaaa" className="date-label">
               <DatePicker
                 style={{ width: "100%" }}
                 value={nova.dataInicio}
-                onChange={(date) => setNova({ ...nova, dataInicio: date })}
-                placeholder="mm/dd/yyyy"
-                format="MM/DD/YYYY"
+                onChange={handleDataInicioChange}
+                placeholder="dd/mm/aaaa"
+                format="DD/MM/YYYY"
+                disabledDate={disabledDataInicio}
               />
               <div className="date-hint">data de início</div>
             </StyledForm.Item>
 
-            <StyledForm.Item label="mm/dd/yyyy" className="date-label">
+            <StyledForm.Item label="dd/mm/aaaa" className="date-label">
               <DatePicker
                 style={{ width: "100%" }}
                 value={nova.dataFim}
-                onChange={(date) => setNova({ ...nova, dataFim: date })}
-                placeholder="mm/dd/yyyy"
-                format="MM/DD/YYYY"
+                onChange={handleDataFimChange}
+                placeholder="dd/mm/aaaa"
+                format="DD/MM/YYYY"
+                disabledDate={disabledDataFim}
+                disabled={!nova.dataInicio}
               />
               <div className="date-hint">data de fim</div>
             </StyledForm.Item>
@@ -163,8 +258,9 @@ export default function EventActivitiesCard() {
               <TimePicker
                 style={{ width: "100%" }}
                 value={nova.horaInicio}
-                onChange={(time) => setNova({ ...nova, horaInicio: time })}
+                onChange={handleHoraInicioChange}
                 placeholder="Horário de Início"
+                format="HH:mm"
               />
             </StyledForm.Item>
 
@@ -172,8 +268,10 @@ export default function EventActivitiesCard() {
               <TimePicker
                 style={{ width: "100%" }}
                 value={nova.horaFim}
-                onChange={(time) => setNova({ ...nova, horaFim: time })}
+                onChange={handleHoraFimChange}
                 placeholder="Horário de Término"
+                format="HH:mm"
+                disabled={!nova.horaInicio || (!nova.dataInicio || !nova.dataFim)}
               />
             </StyledForm.Item>
           </TwoColumn>
