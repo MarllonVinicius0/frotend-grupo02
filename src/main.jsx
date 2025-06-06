@@ -16,6 +16,7 @@ import EventDetailsPage from "./pages/EventDetailsPage";
 import AdminCreateEventPage from "./pages/AdminCreateEventPage";
 import MyEvents from "./pages/MyEvents";
 import EventAdm from "./pages/EventAdm";
+import EditEvent from "./pages/EditEvent"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -41,6 +42,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/organize-evento" element={<AdminCreateEventPage />} />
           <Route path="/myevents" element={<MyEvents />} />
           <Route path ="/eventadm" element = {<EventAdm />} />
+          <Route path ="/editEvent" element = {<EditEvent />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

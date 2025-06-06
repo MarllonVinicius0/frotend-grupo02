@@ -3,11 +3,11 @@ import { Container } from "./style";
 import { Button, Popconfirm } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export default function FooterButtons({ onPublicar }) {
+export default function FooterButtons({ onPublicar, textoConfirmar = "Publicar Evento" }) {
   const navigate = useNavigate();
 
   const cancelar = () => {
-    navigate("/admin/eventos");
+    navigate("/myevents");
   };
 
   return (
@@ -24,7 +24,7 @@ export default function FooterButtons({ onPublicar }) {
       </Popconfirm>
 
       <Button type="primary" className="publish-btn" size="large" onClick={onPublicar}>
-        Publicar Evento
+        {textoConfirmar}
       </Button>
     </Container>
   );
