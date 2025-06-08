@@ -3,7 +3,7 @@ import {
   PageWrapper,
   ContentRow
 } from "./style";
-import Header from "../../components/HeaderPages";
+import Header from "../../components/HeaderLoggedUser";
 import VoltarLink from "../../components/VoltarLink";
 import EventHeaderBox from "../../components/EventHeaderBox";
 import EventDescription from "../../components/EventDescription";
