@@ -83,7 +83,7 @@ export default function HeaderLoggedUser() {
         {/* Desktop Navigation */}
         <Nav>
           <NavItem href="/organize-evento">Organize um Evento</NavItem>
-          <NavItem href="/meus-eventos">Meus Eventos</NavItem>
+          <NavItem href="/myEvents">Meus Eventos</NavItem>
         </Nav>
 
         {/* Profile Section */}

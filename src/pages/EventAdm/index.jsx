@@ -1,10 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Importações do Ant Design
 import { Row, Col, Typography, Button, Card, Space, Flex } from 'antd';
 import { ArrowLeftOutlined, CalendarOutlined, EnvironmentOutlined, UserOutlined } from '@ant-design/icons';
 import HeaderLoggedUser from '../../components/HeaderLoggedUser';
-
 
 // Importações dos nossos componentes estilizados
 import { PageWrapper, MainContent, EventHeader, InfoCard, StatsCard } from './style';
@@ -12,6 +12,8 @@ import { PageWrapper, MainContent, EventHeader, InfoCard, StatsCard } from './st
 const { Title, Text, Link } = Typography;
 
 const EventDetailsPage = () => {
+  const navigate = useNavigate();
+
   // Dados do evento (geralmente viriam de uma API)
   const eventData = {
     title: 'Palestra da Educação 2025',
@@ -23,6 +25,18 @@ const EventDetailsPage = () => {
     category: 'Educação',
     registered: 847,
     limit: 1000,
+  };
+
+  const handleEditEvent = () => {
+    navigate('/editEvent');
+  };
+
+  const handleViewActivities = () => {
+    navigate('/listaAtividades');
+  };
+
+  const handleViewRegistered = () => {
+    navigate('/listaInscritoseventos');
   };
 
   return (
@@ -46,7 +60,7 @@ const EventDetailsPage = () => {
                   </Space>
                 </div>
                 <Space>
-                  <Button>Editar Evento</Button>
+                  <Button onClick={handleEditEvent}>Editar Evento</Button>
                 </Space>
               </EventHeader>
 
@@ -78,8 +92,8 @@ const EventDetailsPage = () => {
               <Space direction="vertical" size="large" style={{ width: '100%' }}>
                 <Card bordered={false}>
                   <Space direction="vertical" style={{ width: '100%' }}>
-                    <Button block>Ver Todas as Atividades</Button>
-                    <Button block>Ver Lista de Inscritos</Button>
+                    <Button block onClick={handleViewActivities}>Ver Todas as Atividades</Button>
+                    <Button block onClick={handleViewRegistered}>Ver Lista de Inscritos</Button>
                   </Space>
                 </Card>
 

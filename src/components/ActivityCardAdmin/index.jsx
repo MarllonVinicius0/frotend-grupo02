@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   CardWrapper,
   Header,
@@ -26,6 +27,16 @@ export default function ActivityCardAdmin({
   onEditar,
   onVerInscritos
 }) {
+  const navigate = useNavigate();
+
+  const handleVerInscritos = () => {
+    navigate('/listaInscritos');
+  };
+
+  const handleEditar = () => {
+    navigate('/editEvent');
+  };
+
   return (
     <CardWrapper>
       <Header>
@@ -55,8 +66,8 @@ export default function ActivityCardAdmin({
           <EnvironmentOutlined /> {localizacao}
         </Location>
         <Actions>
-          <Button onClick={onVerInscritos}>Ver Inscritos</Button>
-          <Button type="primary" onClick={onEditar}>Editar</Button>
+          <Button onClick={handleVerInscritos}>Ver Inscritos</Button>
+          <Button type="primary" onClick={handleEditar}>Editar</Button>
         </Actions>
       </Footer>
     </CardWrapper>

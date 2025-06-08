@@ -15,7 +15,7 @@ export default function AdminCreateEventPage() {
   return (
     <PageWrapper>
       <HeaderLoggedUser />
-      <VoltarLink to="/eventadm" />
+      <VoltarLink to="/myevents" />
       <PageHeader
         titulo="Criar Novo Evento"
         subtitulo="Configure todos os detalhes do seu evento e suas atividades"

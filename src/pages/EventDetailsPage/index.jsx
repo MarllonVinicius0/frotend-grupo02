@@ -28,7 +28,7 @@ export default function EventDetailsPage() {
   return (
     <PageWrapper>
       <Header />
-      <VoltarLink to="/eventos" />
+      <VoltarLink to="/categoria/:id" />
       <EventHeaderBox 
         isRegistered={isRegistered}
         participantCount={participantCount}
