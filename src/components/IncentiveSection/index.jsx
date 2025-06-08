@@ -1,7 +1,14 @@
 import React from 'react';
-import { IncentiveContainer,MainMessage,SubMessage,ActionButton, } from './style';
+import { useNavigate } from 'react-router-dom';
+import { IncentiveContainer, MainMessage, SubMessage, ActionButton } from './style';
 
 const IncentiveSection = () => {
+  const navigate = useNavigate();
+
+  const handleExplorarEventos = () => {
+    navigate('/eventos');
+  };
+
   return (
     <IncentiveContainer>
       <MainMessage>
@@ -10,8 +17,8 @@ const IncentiveSection = () => {
       <SubMessage>
         inscreva-se agora e garanta sua vaga!
       </SubMessage>
-      <ActionButton onClick={() => console.log('Botão Explorar Eventos clicado!')}>
-        <a href="/eventos">Explorar Eventos</a>
+      <ActionButton onClick={handleExplorarEventos}>
+        Explorar Eventos
       </ActionButton>
     </IncentiveContainer>
   );

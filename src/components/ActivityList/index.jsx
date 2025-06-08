@@ -6,18 +6,20 @@ import {
   SectionTitle, 
   ActivityListContainer,
   PaginationContainer,
-  LoadingContainer
+  LoadingContainer,
+  SubmitButtonContainer,
+  SubmitButton
 } from "./style";
 
 const atividades = [
-  { id: 1, titulo: "Educação 1", responsavel: "Ana Souza", data: "20/06 às 15h" },
-  { id: 2, titulo: "Educação 2", responsavel: "Carlos Lima", data: "21/06 às 14h" },
-  { id: 3, titulo: "Educação 3", responsavel: "Fernanda Rocha", data: "22/06 às 16h" },
-  { id: 4, titulo: "Educação 4", responsavel: "João Pedro", data: "23/06 às 10h" },
-  { id: 5, titulo: "Educação 5", responsavel: "Maria Silva", data: "24/06 às 09h" },
-  { id: 6, titulo: "Educação 6", responsavel: "Roberto Santos", data: "25/06 às 11h" },
-  { id: 7, titulo: "Educação 7", responsavel: "Lucia Mendes", data: "26/06 às 13h" },
-  { id: 8, titulo: "Educação 8", responsavel: "Pedro Oliveira", data: "27/06 às 17h" },
+  { id: 1, titulo: "Educação 1", responsavel: "Ana Souza", horario: "10:00 até 12:00", data: "15 de Setembro, 2025" },
+  { id: 2, titulo: "Educação 2", responsavel: "Carlos Lima", horario: "14:00 até 16:00", data: "16 de Setembro, 2025" },
+  { id: 3, titulo: "Educação 3", responsavel: "Fernanda Rocha", horario: "09:00 até 11:00", data: "17 de Setembro, 2025" },
+  { id: 4, titulo: "Educação 4", responsavel: "João Pedro", horario: "15:00 até 17:00", data: "18 de Setembro, 2025" },
+  { id: 5, titulo: "Educação 5", responsavel: "Maria Silva", horario: "13:00 até 15:00", data: "19 de Setembro, 2025" },
+  { id: 6, titulo: "Educação 6", responsavel: "Roberto Santos", horario: "10:00 até 12:00", data: "20 de Setembro, 2025" },
+  { id: 7, titulo: "Educação 7", responsavel: "Lucia Mendes", horario: "16:00 até 18:00", data: "21 de Setembro, 2025" },
+  { id: 8, titulo: "Educação 8", responsavel: "Pedro Oliveira", horario: "11:00 até 13:00", data: "22 de Setembro, 2025" },
 ];
 
 export default function ActivityList({ 
@@ -27,34 +29,34 @@ export default function ActivityList({
   isSubscribed = false
 }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedActivities, setSelectedActivities] = useState({});
+  const [selectedActivities, setSelectedActivities] = useState(new Set());
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const currentActivities = atividades.slice(startIndex, endIndex);
+
+  const totalSelectedActivities = selectedActivities.size;
+
+  const handleSubmitRegistrations = () => {
+    if (totalSelectedActivities > 0) {
+      console.log('Submetendo inscrições:', Array.from(selectedActivities));
+      // Adicionar a lógica para submeter as inscrições
+    }
+  };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   const handleAddActivity = (activityId) => {
-    setSelectedActivities(prev => ({
-      ...prev,
-      [activityId]: (prev[activityId] || 0) + 1
-    }));
+    setSelectedActivities(prev => new Set([...prev, activityId]));
   };
 
   const handleRemoveActivity = (activityId) => {
     setSelectedActivities(prev => {
-      const newCount = Math.max(0, (prev[activityId] || 0) - 1);
-      if (newCount === 0) {
-        const { [activityId]: removed, ...rest } = prev;
-        return rest;
-      }
-      return {
-        ...prev,
-        [activityId]: newCount
-      };
+      const newSet = new Set(prev);
+      newSet.delete(activityId);
+      return newSet;
     });
   };
 
@@ -90,13 +92,29 @@ export default function ActivityList({
           <ActivityCard
             key={atividade.id}
             titulo={atividade.titulo}
+            horario={atividade.horario}
+            data={atividade.data}
             isSubscribed={isSubscribed}
             onAdd={() => handleAddActivity(atividade.id)}
             onRemove={() => handleRemoveActivity(atividade.id)}
-            selectedCount={selectedActivities[atividade.id] || 0}
+            selectedCount={selectedActivities.has(atividade.id) ? 1 : 0}
           />
         ))}
       </ActivityListContainer>
+
+      {isSubscribed && (
+        <SubmitButtonContainer>
+          <SubmitButton
+            type="primary"
+            size="large"
+            disabled={totalSelectedActivities === 0}
+            onClick={handleSubmitRegistrations}
+            $hasActivities={totalSelectedActivities > 0}
+          >
+            Submeter Inscrições
+          </SubmitButton>
+        </SubmitButtonContainer>
+      )}
 
       {showPagination && atividades.length > pageSize && (
         <PaginationContainer>

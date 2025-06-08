@@ -8,7 +8,7 @@ export const ActivityItem = styled.div`
   margin: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   
   &:last-child {
     border-bottom: none;
@@ -19,11 +19,40 @@ export const ActivityItem = styled.div`
   }
 `;
 
+export const ActivityContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
 export const ActivityTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
   color: #222;
-  flex: 1;
+  margin-bottom: 0.5rem;
+`;
+
+export const ActivityInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+export const InfoItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #1FA0EA;
+  
+  .anticon {
+    font-size: 14px;
+  }
+  
+  span {
+    color: #666;
+  }
 `;
 
 export const ActivityActions = styled.div`
@@ -36,29 +65,34 @@ export const ActionButton = styled(Button)`
   &.ant-btn-primary {
     width: 32px;
     height: 32px;
-    border-radius: 50%;
+    border-radius: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
+    transition: all 0.3s ease;
     
     ${props => props.$variant === 'add' && `
-      background-color: #52c41a;
-      border-color: #52c41a;
+      background-color: ${props.$isSelected ? '#389e0d' : 'rgba(82, 196, 26, 0.4)'};
+      border-color: ${props.$isSelected ? '#389e0d' : 'rgba(82, 196, 26, 0.4)'};
+      opacity: ${props.$isSelected ? '1' : '0.7'};
       
       &:hover {
-        background-color: #73d13d !important;
-        border-color: #73d13d !important;
+        background-color: ${props.$isSelected ? '#237804' : 'rgba(115, 209, 61, 0.6)'} !important;
+        border-color: ${props.$isSelected ? '#237804' : 'rgba(115, 209, 61, 0.6)'} !important;
+        opacity: 1 !important;
       }
     `}
     
     ${props => props.$variant === 'remove' && `
-      background-color: #ff4d4f;
-      border-color: #ff4d4f;
+      background-color: rgba(255, 77, 79, 0.4);
+      border-color: rgba(255, 77, 79, 0.4);
+      opacity: 0.7;
       
       &:hover {
-        background-color: #ff7875 !important;
-        border-color: #ff7875 !important;
+        background-color: rgba(255, 120, 117, 0.6) !important;
+        border-color: rgba(255, 120, 117, 0.6) !important;
+        opacity: 1 !important;
       }
     `}
     

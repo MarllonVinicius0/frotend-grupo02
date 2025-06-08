@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Typography } from "antd";
+import { Typography, Button } from "antd";
 
 const { Title } = Typography;
 
@@ -68,4 +68,39 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 200px;
+`;
+
+export const SubmitButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+`;
+
+export const SubmitButton = styled(Button)`
+  &.ant-btn {
+    background-color: ${props => props.$hasActivities ? '#52c41a' : '#d9d9d9'};
+    border-color: ${props => props.$hasActivities ? '#52c41a' : '#d9d9d9'};
+    color: ${props => props.$hasActivities ? '#fff' : '#00000040'};
+    font-weight: 600;
+    font-size: 1rem;
+    height: auto;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    cursor: ${props => props.$hasActivities ? 'pointer' : 'not-allowed'};
+    
+    &:hover:not(:disabled) {
+      background-color: #73d13d !important;
+      border-color: #73d13d !important;
+    }
+    
+    &:disabled {
+      cursor: not-allowed;
+      
+      &:hover {
+        background-color: #d9d9d9 !important;
+        border-color: #d9d9d9 !important;
+        color: #00000040 !important;
+      }
+    }
+  }
 `;

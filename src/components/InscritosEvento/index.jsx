@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Input, 
   Table, 
@@ -35,6 +36,7 @@ const { Search } = Input;
 const { Text } = Typography;
 
 export default function InscritosEvento() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
@@ -109,8 +111,7 @@ export default function InscritosEvento() {
   ];
 
   const handleBack = () => {
-    // Implementar navegação de volta
-    console.log("Voltar para página anterior");
+    navigate('/eventadm');
   };
 
   const handleSearch = (value) => {

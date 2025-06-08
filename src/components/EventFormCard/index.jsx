@@ -170,6 +170,8 @@ export default function EventFormCard({
               <StyledSelect.Option value="educacao">Educação</StyledSelect.Option>
               <StyledSelect.Option value="tecnologia">Tecnologia</StyledSelect.Option>
               <StyledSelect.Option value="negocios">Negócios</StyledSelect.Option>
+              <StyledSelect.Option value="saude">Saúde</StyledSelect.Option>
+              <StyledSelect.Option value="entretenimento">Entretenimento</StyledSelect.Option>
             </StyledSelect>
           </StyledForm.Item>
 
