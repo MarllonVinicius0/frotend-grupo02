@@ -36,9 +36,9 @@ export default function HeaderPage() {
 
         {/* Desktop Navigation */}
         <Nav>
-          <NavItem href="/Login">Organize um Evento</NavItem>
-          <NavItem href="/Login">Login</NavItem>
-          <NavItem href="/Cadastro">Cadastre-se</NavItem>
+          <NavItem href="/login">Organize um Evento</NavItem>
+          <NavItem href="/login">Login</NavItem>
+          <NavItem href="/cadastro">Cadastre-se</NavItem>
         </Nav>
 
         {/* Mobile Menu Button */}
